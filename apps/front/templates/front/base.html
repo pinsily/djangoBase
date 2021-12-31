@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}base{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'front/css/style.css' %}">
+
+    {% block mystyle %}{% endblock %}
+
+</head>
+<body>.
+
+{% block content %}
+{% endblock %}
+
+
+<script src="{% static 'front/js/main.js' %}"></script>
+
+{% block myjs %}{% endblock %}
+
+</body>
+</html>

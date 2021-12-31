@@ -1,0 +1,11 @@
+{% extends 'front/base.html' %}
+
+{% block title %}登录态{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        退出登录
+    {% else %}
+        登录
+    {% endif %}
+{% endblock %}
