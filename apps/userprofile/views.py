@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from front.models import Profile
+from userprofile.models import Profile
 from userprofile.userforms import LoginForm, RegistrationForm
 
 

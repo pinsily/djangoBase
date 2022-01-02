@@ -2,7 +2,7 @@ import re
 
 from django import forms
 
-from front.models import Profile
+from userprofile.models import Profile
 
 
 def email_check(email):
