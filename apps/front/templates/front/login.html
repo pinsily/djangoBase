@@ -1,0 +1,72 @@
+{% extends 'front/base.html' %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block mystyle %}
+    <style type="text/css">
+        .middle {
+            margin-top: 110px;
+            margin-bottom: 110px;
+            padding: 100px 50px 50px 50px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .login {
+            margin-left: 20px;
+        }
+
+        .btn {
+            border-radius: 28px;
+        }
+
+        input::placeholder {
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="middle mx-auto h-75 w-75">
+            <div class="row">
+                <div class="col col-12 col-md-6">
+                    <img class="rounded img-fluid" src="{% static 'front/imgs/admin-login.jpg' %}" alt="登录页面">
+                </div>
+                <div class="col col-12 col-md-6">
+                    <div class="login">
+                        <h5 class="font-weight-bold">登录</h5>
+                        {% if message %}
+                            <p class="font-weight-light text-danger"
+                               style="font-weight: 500; font-size: 12px;">{{ message }}</p>
+                        {% else %}
+                            <p class="font-weight-light" style="font-weight: 500; font-size: 12px;">输入账号密码登录</p>
+                        {% endif %}
+
+                        <form action="{% url 'userprofile:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username" class="sr-only">用户名:</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                       placeholder="用户名或邮箱" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="sr-only">密码</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="密码" required>
+                            </div>
+
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block w-75 mx-auto">登 录</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

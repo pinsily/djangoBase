@@ -4,5 +4,5 @@
 __pycache__/
 venv/
 .idea/
-migration/
+migrations/
 db.sqlite3

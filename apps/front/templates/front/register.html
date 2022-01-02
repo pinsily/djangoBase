@@ -1,0 +1,94 @@
+{% extends 'front/base.html' %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block mystyle %}
+    <style type="text/css">
+        .middle {
+            margin-top: 110px;
+            margin-bottom: 110px;
+            padding: 100px 50px 50px 50px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .login {
+            margin-left: 20px;
+        }
+
+        .btn {
+            border-radius: 28px;
+        }
+
+        input::placeholder {
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="middle mx-auto h-75 w-75">
+            <div class="row">
+                <div class="col col-12 col-md-6">
+                    <img class="rounded img-fluid" src="{% static 'front/imgs/admin-login.jpg' %}" alt="登录页面">
+                </div>
+                <div class="col col-12 col-md-6">
+                    <div class="login">
+                        <h5 class="font-weight-bold">注册</h5>
+
+                        <form action="{% url 'userprofile:register' %}" method="post">
+                            {% csrf_token %}
+                            {% for error in form.username.errors %}
+                                <p class="font-weight-light text-danger" style="font-weight: 500; font-size: 12px;">{{ error }}</p>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="username" class="sr-only">用户名:</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="用户名"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                {% for error in form.email.errors %}
+                                    <p class="font-weight-light text-danger" style="font-weight: 500; font-size: 12px;">{{ error }}</p>
+                                {% endfor %}
+                                <label for="email" class="sr-only">邮箱:</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="邮箱"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                {% for error in form.password.errors %}
+                                    <p class="font-weight-light text-danger" style="font-weight: 500; font-size: 12px;">{{ error }}</p>
+                                {% endfor %}
+                                <label for="password" class="sr-only">密码</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="密码" required>
+                            </div>
+                            <div class="form-group">
+                                {% for error in form.re_password.errors %}
+                                    <p class="font-weight-light text-danger" style="font-weight: 500; font-size: 12px;">{{ error }}</p>
+                                {% endfor %}
+                                <label for="re_password" class="sr-only">密码确认</label>
+                                <input type="password" class="form-control" id="re_password" name="re_password"
+                                       placeholder="密码确认" required>
+                            </div>
+
+                            {#                            <div class="xuan custom-control custom-checkbox">#}
+                            {#                                <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">#}
+                            {#                                <label class="custom-control-label font-weight-light small" for="customCheck">记住用户名</label>#}
+                            {#                            </div>#}
+
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block w-75 mx-auto">注 册</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
