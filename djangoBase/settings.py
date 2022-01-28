@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 
 # 部署后, uwsgi 获取静态文件的目录
 # 收集静态文件： python manage.py collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
