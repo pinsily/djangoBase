@@ -132,9 +132,10 @@ USE_L10N = True
 STATIC_URL = '/static/'
 
 # 静态文件存在其他地方的文件夹下，可以设置多个
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+# 公共样式文件等 引用 {% static 'css/bootstrap.min.css' %}
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # 部署后, uwsgi 获取静态文件的目录
 # 收集静态文件： python manage.py collectstatic
