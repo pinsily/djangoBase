@@ -1,0 +1,99 @@
+{% extends 'front/base.html' %}
+{% load account socialaccount %}
+{% load i18n %}
+
+{% block title %}Login{% endblock %}
+
+{% block mystyle %}
+    <style type="text/css">
+        .middle {
+            margin-top: 110px;
+            margin-bottom: 110px;
+            padding: 100px 50px 50px 50px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .login {
+            margin-left: 20px;
+        }
+
+        .btn {
+            border-radius: 28px;
+        }
+
+        input::placeholder {
+            font-size: 12px;
+        }
+
+        a, a:link, a:visited, a:hover, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="middle mx-auto h-75 w-75">
+            <div class="row">
+                <div class="col col-12 col-md-6">
+                    <img class="rounded img-fluid" src="{% static 'images/admin-login.jpg' %}" alt="登录页面">
+                </div>
+                <div class="col col-12 col-md-6">
+                    <div class="login">
+                        <h5 class="font-weight-bold mb-3">登录</h5>
+
+                        <form action="{% url 'account_login' %}" method="post" style="font-size: 14px;">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <ul>
+                                    {% for field in form %}
+                                        {% if field.errors %}
+                                            {% for error in field.errors %}
+                                                <li><a href="#id_{{ field.name }}"
+                                                       class="error">{{ error|escape }}</a></li>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                                {% if form.non_field_errors %}
+                                    {{ form.non_field_errors }}
+                                {% endif %}
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="{{ form.login.id_label_tag }}" class="sr-only">登录名:</label>
+                                <input type="text" class="form-control" id="{{ form.login.id_label_tag }}"
+                                       name="{{ form.login.name }}"
+                                       placeholder="用户名或邮箱"
+                                       {% if form.login.value %}value="{{ form.login.value|stringformat:'s' }}"{% endif %}
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.password.id_label_tag }}" class="sr-only">密码:</label>
+                                <input type="password" class="form-control" id="{{ form.password.id_label_tag }}"
+                                       name="{{ form.password.name }}"
+                                       placeholder="密码"
+                                       {% if form.password.value %}value="{{ form.password.value|stringformat:'s' }}"{% endif %}
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <div class="text-right" style="font-size: 14px; color: #007bff;">
+                                    <a href="{% url 'account_reset_password' %}" class="mr-2">忘记密码</a>
+                                    <a href="{% url 'account_signup' %}">没有账号?</a>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block w-75 mx-auto">登 录</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
